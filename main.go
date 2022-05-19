@@ -3,9 +3,14 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 
 	"github.com/drainuzzo/gonamify/randify"
 )
+
+const charset = "abcdefghijklmnopqrstuvwxyz"
+
+const vowels = "aeiou"
 
 //var seededRand *rand.Rand = rand.New(
 //	rand.NewSource(time.Now().UnixNano()))
@@ -23,9 +28,18 @@ func main() {
 	}
 	//rand.Seed(time.Now().UnixNano())
 	for i := 1; i <= 8; i++ {
-		fmt.Println("Name", i, " :", randify.Namify(10))
+		fmt.Println("Name", i, " :", namify(10))
 	}
 
+}
+
+func namify(n int) string {
+	sb := strings.Builder{}
+	sb.Grow(n)
+	for i := 0; i < n; i++ {
+		sb.WriteByte(charset[randify.SeededRand.Intn(len(charset))])
+	}
+	return sb.String()
 }
 
 //TODO
