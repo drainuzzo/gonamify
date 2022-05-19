@@ -3,11 +3,10 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"time"
 )
 
-var seededRand *rand.Rand = rand.New(
-	rand.NewSource(time.Now().UnixNano()))
+//var seededRand *rand.Rand = rand.New(
+//	rand.NewSource(time.Now().UnixNano()))
 
 func main() {
 	// work in progress....
@@ -16,6 +15,15 @@ func main() {
 	fmt.Println("2:", rand.Int())
 	fmt.Println("3:", rand.Int())
 	fmt.Println("4:", seededRand.Int())
+	var example string = "ciccciopelliccio"
+	for i, r := range example {
+		fmt.Println(i, r, string(r))
+	}
+	//rand.Seed(time.Now().UnixNano())
+	for i := 1; i <= 8; i++ {
+		fmt.Println("Name", i, " :", namify(10))
+	}
+
 }
 
 //TODO
