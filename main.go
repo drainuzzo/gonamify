@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math/rand"
+
+	"github.com/drainuzzo/gonamify/randify"
 )
 
 //var seededRand *rand.Rand = rand.New(
@@ -11,17 +13,17 @@ import (
 func main() {
 	// work in progress....
 
-	fmt.Println("1:", rand.Int())
+	//fmt.Println("1:", rand.Int())
 	fmt.Println("2:", rand.Int())
 	fmt.Println("3:", rand.Int())
-	fmt.Println("4:", seededRand.Int())
+	fmt.Println("4:", randify.SeededRand.Int())
 	var example string = "ciccciopelliccio"
 	for i, r := range example {
 		fmt.Println(i, r, string(r))
 	}
 	//rand.Seed(time.Now().UnixNano())
 	for i := 1; i <= 8; i++ {
-		fmt.Println("Name", i, " :", namify(10))
+		fmt.Println("Name", i, " :", randify.Namify(10))
 	}
 
 }

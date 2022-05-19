@@ -10,14 +10,14 @@ const charset = "abcdefghijklmnopqrstuvwxyz"
 
 const vowels = "aeiou"
 
-var seededRand *rand.Rand = rand.New(
+var SeededRand *rand.Rand = rand.New(
 	rand.NewSource(time.Now().UnixNano()))
 
 func Namify(n int) string {
 	sb := strings.Builder{}
 	sb.Grow(n)
 	for i := 0; i < n; i++ {
-		sb.WriteByte(charset[seededRand.Intn(len(charset))])
+		sb.WriteByte(charset[SeededRand.Intn(len(charset))])
 	}
 	return sb.String()
 }
