@@ -34,7 +34,7 @@ func main() {
 }
 
 func namify(n int) string {
-	sb := strings.Builder{}
+	sb := strings.Builder{} //buffer
 	sb.Grow(n)
 	for i := 0; i < n; i++ {
 		sb.WriteByte(charset[randify.SeededRand.Intn(len(charset))])
