@@ -11,6 +11,10 @@ const charset = "abcdefghijklmnopqrstuvwxyz"
 
 const vowels = "aeiou"
 
+var cns = getCons(charset, vowels)
+
+//var cns string = strings.ReplaceAll(charset, vowels, "") //consonants
+
 //var seededRand *rand.Rand = rand.New(
 //	rand.NewSource(time.Now().UnixNano()))
 
@@ -21,16 +25,20 @@ func main() {
 	//fmt.Println("2:", rand.Int())
 	//fmt.Println("3:", rand.Int())
 	//fmt.Println("4:", randify.SeededRand.Int())
-	var example string = "ciccciopelliccio"
-	for i, r := range example {
-		fmt.Println(i, r, string(r))
-	}
+	//var example string = "ciccciopelliccio"
+	// for i, r := range example {
+	// 	fmt.Println(i, r, string(r))
+	// }
 	//rand.Seed(time.Now().UnixNano())
 	for i := 1; i <= 8; i++ {
 
 		fmt.Println("Name", i, " :", rndString(10, charset))
 		fmt.Println("Name", i, " :", rndString(1, vowels))
 	}
+
+	fmt.Println(isCons('c', cns))
+	fmt.Println(isCons('i', cns))
+	fmt.Println(cns)
 
 }
 
@@ -43,10 +51,41 @@ func rndString(n int, s string) string {
 	return sb.String()
 }
 
-/* func fixCons(s *string) string {
-	for i := 0; i < n; i++ {
-
+//TO FIX
+func isCons(b byte, s string) bool {
+	for i := range s {
+		if b == s[i] {
+			return true
+		}
 	}
+	return false
+}
+
+//TO FIX
+func getCons(c string, v string) string {
+	var cns string
+	for i := range c {
+		cns = strings.ReplaceAll(string(c[i]), string(v[i]), "")
+		fmt.Println(cns)
+	}
+	return cns
+}
+
+/* func fixCons(name string) string {
+
+	for i:=0; i<len(name); i++ {
+		for j,_ := range cns {
+			if name[i]==cns[j] name[i+1]==cns[j] {
+				name[i+1]=rndString(1, vowels)
+			}
+
+		if (strings.ContainsAny(cns,name[i])) &&
+			(strings.Contains(cs[i+1],cns)) {
+				cs[i+1] = rndString(1, vowels)
+		}
+	}
+
+
 }  */
 
 //TODO
