@@ -11,7 +11,7 @@ const charset = "abcdefghijklmnopqrstuvwxyz"
 
 const vowels = "aeiou"
 
-var cns = getCons(charset, vowels)
+//var cns = getCons(charset, vowels)
 
 //var cns string = strings.ReplaceAll(charset, vowels, "") //consonants
 
@@ -36,9 +36,10 @@ func main() {
 		fmt.Println("Name", i, " :", rndString(1, vowels))
 	}
 
-	fmt.Println(isCons('c', cns))
-	fmt.Println(isCons('i', cns))
-	fmt.Println(cns)
+	//fmt.Println(isCons('c', cns))
+	fmt.Println(gotVowel("ccecgpdrr"))
+	fmt.Println(!gotVowel("cccgpdrr"))
+	//fmt.Println(cns)
 
 }
 
@@ -51,25 +52,22 @@ func rndString(n int, s string) string {
 	return sb.String()
 }
 
-//TO FIX
-func isCons(b byte, s string) bool {
-	for i := range s {
-		if b == s[i] {
-			return true
-		}
+func gotVowel(s string) bool {
+	if strings.ContainsAny(s, string(vowels)) {
+		return true
 	}
 	return false
 }
 
 //TO FIX
-func getCons(c string, v string) string {
+/* func getCons(c string, v string) string {
 	var cns string
 	for i := range c {
 		cns = strings.ReplaceAll(string(c[i]), string(v[i]), "")
 		fmt.Println(cns)
 	}
 	return cns
-}
+} */
 
 /* func fixCons(name string) string {
 
