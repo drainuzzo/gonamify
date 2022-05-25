@@ -39,6 +39,21 @@ func main() {
 	//fmt.Println(isCons('c', cns))
 	fmt.Println(gotVowel("ccecgpdrr"))
 	fmt.Println(!gotVowel("cccgpdrr"))
+	str1 := "cciolo"
+	str2 := "ccciolo"
+	str3 := "ccccolo"
+	str4 := "ccccclo"
+	str5 := "cccccco"
+	str6 := "ccccccc"
+
+	for i := 1; i < 7; i++ {
+		fmt.Println(i, " nome=", str1, "lavorato=", checkCons(str1))
+		fmt.Println(i, " nome=", str2, "lavorato=", checkCons(str2))
+		fmt.Println(i, " nome=", str3, "lavorato=", checkCons(str3))
+		fmt.Println(i, " nome=", str4, "lavorato=", checkCons(str4))
+		fmt.Println(i, " nome=", str5, "lavorato=", checkCons(str5))
+		fmt.Println(i, " nome=", str6, "lavorato=", checkCons(str6))
+	}
 	//fmt.Println(cns)
 
 }
@@ -59,32 +74,19 @@ func gotVowel(s string) bool {
 	return false
 }
 
-//TO FIX
-/* func getCons(c string, v string) string {
-	var cns string
-	for i := range c {
-		cns = strings.ReplaceAll(string(c[i]), string(v[i]), "")
-		fmt.Println(cns)
-	}
-	return cns
-} */
-
-/* func fixCons(name string) string {
-
-	for i:=0; i<len(name); i++ {
-		for j,_ := range cns {
-			if name[i]==cns[j] name[i+1]==cns[j] {
-				name[i+1]=rndString(1, vowels)
-			}
-
-		if (strings.ContainsAny(cns,name[i])) &&
-			(strings.Contains(cs[i+1],cns)) {
-				cs[i+1] = rndString(1, vowels)
+//TO_FIX
+func checkCons(name string) string {
+	var str string = ""
+	for i := 0; i < len(name)-2; i++ {
+		if !gotVowel(string(name[i])) && !gotVowel(string(name[i+1])) && !gotVowel(string(name[i+2])) { //is consonant
+			str = str + string(name[i]) + rndString(1, vowels) + string(name[i+2])
+			fmt.Println("\nitero i=", i, " str:", str)
 		}
+		checkCons(name[i+1 : len(name)-2])
+		//? TODO
 	}
-
-
-}  */
+	return str
+}
 
 //TODO
 // func rndVowel(string) {
