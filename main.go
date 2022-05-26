@@ -39,20 +39,20 @@ func main() {
 	//fmt.Println(isCons('c', cns))
 	fmt.Println(gotVowel("ccecgpdrr"))
 	fmt.Println(!gotVowel("cccgpdrr"))
-	str1 := "cciolo"
+	//str1 := "cciolo"
 	str2 := "ccciolo"
-	str3 := "ccccolo"
-	str4 := "ccccclo"
-	str5 := "cccccco"
-	str6 := "ccccccc"
+	// str3 := "ccccolo"
+	// str4 := "ccccclo"
+	// str5 := "cccccco"
+	// str6 := "ccccccc"
 
 	for i := 1; i < 7; i++ {
-		fmt.Println(i, " nome=", str1, "lavorato=", checkCons(str1))
+		//fmt.Println(i, " nome=", str1, "lavorato=", checkCons(str1))
 		fmt.Println(i, " nome=", str2, "lavorato=", checkCons(str2))
-		fmt.Println(i, " nome=", str3, "lavorato=", checkCons(str3))
-		fmt.Println(i, " nome=", str4, "lavorato=", checkCons(str4))
-		fmt.Println(i, " nome=", str5, "lavorato=", checkCons(str5))
-		fmt.Println(i, " nome=", str6, "lavorato=", checkCons(str6))
+		// fmt.Println(i, " nome=", str3, "lavorato=", checkCons(str3))
+		// fmt.Println(i, " nome=", str4, "lavorato=", checkCons(str4))
+		// fmt.Println(i, " nome=", str5, "lavorato=", checkCons(str5))
+		// fmt.Println(i, " nome=", str6, "lavorato=", checkCons(str6))
 	}
 	//fmt.Println(cns)
 
@@ -77,15 +77,22 @@ func gotVowel(s string) bool {
 //TO_FIX
 func checkCons(name string) string {
 	var str string = ""
+	fmt.Println("\n\n ******* START *******\n\n")
 	for i := 0; i < len(name)-2; i++ {
+		fmt.Println("\n string i i+1 i+2=", i, i+1, i+2, " :", string(name[i]), string(name[i+1]), string(name[i+2]))
 		if !gotVowel(string(name[i])) && !gotVowel(string(name[i+1])) && !gotVowel(string(name[i+2])) { //is consonant
-			str = str + string(name[i]) + rndString(1, vowels) + string(name[i+2])
-			fmt.Println("\nitero i=", i, " str:", str)
+			str = str + string(name[i]) + rndString(1, vowels) + string(name[i+2]) + string(name[i+3:])
+			fmt.Println("\nFOUND! itero i=", i, " str:", str)
 		}
-		checkCons(name[i+1 : len(name)-2])
+		return str + checkCons(name[i+1:len(name)-2])
 		//? TODO
 	}
+	if str == "" {
+		str += name
+	}
+	fmt.Println("\n ****** END *******\n\n")
 	return str
+
 }
 
 //TODO
