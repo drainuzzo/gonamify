@@ -31,29 +31,30 @@ func main() {
 	// }
 	//rand.Seed(time.Now().UnixNano())
 	for i := 1; i <= 8; i++ {
+		name := rndString(10, charset)
+		fmt.Println("Name", i, " :", checkCons(name))
 
-		fmt.Println("Name", i, " :", rndString(10, charset))
-		fmt.Println("Name", i, " :", rndString(1, vowels))
+		//fmt.Println("Name", i, " :", rndString(1, vowels))
 	}
 
 	//fmt.Println(isCons('c', cns))
-	fmt.Println(gotVowel("ccecgpdrr"))
-	fmt.Println(!gotVowel("cccgpdrr"))
+	//fmt.Println(gotVowel("ccecgpdrr"))
+	//fmt.Println(!gotVowel("cccgpdrr"))
 	//str1 := "cciolo"
-	str2 := "ccciolo"
-	// str3 := "ccccolo"
-	// str4 := "ccccclo"
-	// str5 := "cccccco"
-	// str6 := "ccccccc"
+	//str2 := "ccciolo"
+	//str3 := "ccccolo"
+	//str4 := "ccccclo"
+	//str5 := "cccccco"
+	//str6 := "ccccccc"
 
-	for i := 1; i < 7; i++ {
-		//fmt.Println(i, " nome=", str1, "lavorato=", checkCons(str1))
-		fmt.Println(i, " nome=", str2, "lavorato=", checkCons(str2))
-		// fmt.Println(i, " nome=", str3, "lavorato=", checkCons(str3))
-		// fmt.Println(i, " nome=", str4, "lavorato=", checkCons(str4))
-		// fmt.Println(i, " nome=", str5, "lavorato=", checkCons(str5))
-		// fmt.Println(i, " nome=", str6, "lavorato=", checkCons(str6))
-	}
+	//for i := 1; i < 7; i++ {
+	//fmt.Println(i, " nome=", str1, "lavorato=", checkCons(str1))
+	//fmt.Println(i, " nome=", str2, "lavorato=", checkCons(str2))
+	//fmt.Println(i, " nome=", str3, "lavorato=", checkCons(str3))
+	//fmt.Println(i, " nome=", str4, "lavorato=", checkCons(str4))
+	//fmt.Println(i, " nome=", str5, "lavorato=", checkCons(str5))
+	//fmt.Println(i, " nome=", str6, "lavorato=", checkCons(str6))
+	//}
 	//fmt.Println(cns)
 
 }
@@ -68,30 +69,43 @@ func rndString(n int, s string) string {
 }
 
 func gotVowel(s string) bool {
-	if strings.ContainsAny(s, string(vowels)) {
-		return true
-	}
-	return false
+	return strings.ContainsAny(s, string(vowels))
+
 }
 
 //TO_FIX
 func checkCons(name string) string {
 	var str string = ""
-	fmt.Println("\n\n ******* START *******\n\n")
-	for i := 0; i < len(name)-2; i++ {
-		fmt.Println("\n string i i+1 i+2=", i, i+1, i+2, " :", string(name[i]), string(name[i+1]), string(name[i+2]))
-		if !gotVowel(string(name[i])) && !gotVowel(string(name[i+1])) && !gotVowel(string(name[i+2])) { //is consonant
-			str = str + string(name[i]) + rndString(1, vowels) + string(name[i+2]) + string(name[i+3:])
-			fmt.Println("\nFOUND! itero i=", i, " str:", str)
+	//fmt.Println(" ******* START *******\n\n")
+	//for i := 0; i < len(name)-2; i++ {
+
+	//fmt.Println("\n string i i+1 i+2=:", string(name[0]), string(name[1]), string(name[2]))
+	if len(name) > 3 {
+		if !gotVowel(string(name[0])) && !gotVowel(string(name[1])) && !gotVowel(string(name[2])) { //is consonant
+			//fmt.Println(!gotVowel(string(name[0])) && !gotVowel(string(name[1])) && !gotVowel(string(name[2])))
+			//fmt.Println("str prima ", str)
+			str = string(name[0]) + rndString(1, vowels) + string(name[2])
+			//fmt.Println("str dopo ", str)
+			//fmt.Println("\n***** FOUND! **** giro \n")
+		} else {
+			if !gotVowel(string(name[2])) && !gotVowel(string(name[3])) {
+				str = string(name[0]) + string(name[1]) + rndString(1, vowels)
+			} else {
+				str = string(name[0]) + string(name[1]) + string(name[2])
+			}
+
+			//fmt.Println("\n ****** ELSE ******* \n")
+
 		}
-		return str + checkCons(name[i+1:len(name)-2])
-		//? TODO
+
+		return str + checkCons(name[3:])
 	}
-	if str == "" {
-		str += name
-	}
-	fmt.Println("\n ****** END *******\n\n")
-	return str
+	//fmt.Println("len name: ", len(name), "str: ", str)
+	//s[randify.SeededRand.Intn(len(s))]
+	// if !gotVowel(string(str[len(str)-1])) && !gotVowel(string(str[len(str)-2])) {
+	// 	name = name[:len(name)-1] + rndString(1, vowels)
+	// }
+	return name
 
 }
 
