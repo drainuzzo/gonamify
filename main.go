@@ -32,7 +32,7 @@ func main() {
 	//rand.Seed(time.Now().UnixNano())
 	for i := 1; i <= 8; i++ {
 		name := rndString(10, charset)
-		fmt.Println("Name", i, " :", checkCons(name))
+		fmt.Println("Name", i, " :", strings.Title((name)))
 
 		//fmt.Println("Name", i, " :", rndString(1, vowels))
 	}
@@ -81,6 +81,7 @@ func checkCons(name string) string {
 
 	//fmt.Println("\n string i i+1 i+2=:", string(name[0]), string(name[1]), string(name[2]))
 	if len(name) > 3 {
+		//3 consecutive consonants: too much
 		if !gotVowel(string(name[0])) && !gotVowel(string(name[1])) && !gotVowel(string(name[2])) { //is consonant
 			//fmt.Println(!gotVowel(string(name[0])) && !gotVowel(string(name[1])) && !gotVowel(string(name[2])))
 			//fmt.Println("str prima ", str)
@@ -88,17 +89,22 @@ func checkCons(name string) string {
 			//fmt.Println("str dopo ", str)
 			//fmt.Println("\n***** FOUND! **** giro \n")
 		} else {
-			if !gotVowel(string(name[2])) && !gotVowel(string(name[3])) {
+			if !gotVowel(string(name[2])) && !gotVowel(string(name[3])) { //they are consonants
 				str = string(name[0]) + string(name[1]) + rndString(1, vowels)
-			} else {
+			} else { //they are vocals: TODO
+				//3 consecutive vocals: too much
+				//if gotVowel(string(name[1])) && gotVowel(string(name[2])) && gotVowel(string(name[3])) {
+				//	str = string(name[0]) + rndString(1, charset) + string(name[2])
+				//} else { //they are a good mix
 				str = string(name[0]) + string(name[1]) + string(name[2])
+				//}
 			}
 
 			//fmt.Println("\n ****** ELSE ******* \n")
 
 		}
-
 		return str + checkCons(name[3:])
+
 	}
 	//fmt.Println("len name: ", len(name), "str: ", str)
 	//s[randify.SeededRand.Intn(len(s))]
