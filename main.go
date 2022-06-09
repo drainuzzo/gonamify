@@ -88,7 +88,7 @@ func checkCons(name string) string {
 			str = string(name[0]) + rndString(1, vowels) + string(name[2])
 			//fmt.Println("str dopo ", str)
 			//fmt.Println("\n***** FOUND! **** giro \n")
-		} else {
+		} /*else {
 			if !gotVowel(string(name[2])) && !gotVowel(string(name[3])) { //they are consonants
 				str = string(name[0]) + string(name[1]) + rndString(1, vowels)
 			} else { //they are vocals: TODO
@@ -102,7 +102,7 @@ func checkCons(name string) string {
 
 			//fmt.Println("\n ****** ELSE ******* \n")
 
-		}
+		}*/
 		return str + checkCons(name[3:])
 
 	}
